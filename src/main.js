@@ -5,10 +5,13 @@ import { runAllDetections } from './detect.js';
 import { CAMERA_PROFILES } from './cameras.js';
 import { convertImage } from './convert.js';
 import { disruptWatermark } from './watermark.js';
+import { analyzeFrequency } from './frequency/index.js';
+import { renderFrequencyPanel } from './frequency/panel.js';
 
 let selectedProfile = 'iphone15pro';
 let currentFile = null;
 let currentBytes = null;
+let lastFreqBytes = null, lastFreqResult = null;
 
 // --- Camera grid ---
 const grid = document.getElementById('cameraGrid');
@@ -46,6 +49,17 @@ if (wmRange && wmLabel) wmRange.addEventListener('input', () => { wmLabel.textCo
 async function handleFile(file) {
     currentFile = file;
     document.getElementById('results').classList.add('hidden');
+    // Reset freq tab / cache so the new file doesn't show previous results.
+    lastFreqBytes = null; lastFreqResult = null;
+    const freqPanel = document.getElementById('freqPanel');
+    if (freqPanel) freqPanel.innerHTML = `
+        <button class="btn-freq" id="btnRunFreq">▶ 运行频域分析 (~1-3 秒)</button>
+        <div class="freq-placeholder">
+            提取 57 个频域特征 · FFT 幅度谱、径向功率谱、相位一致性、LSB 偏置、小波子带能量…
+            <br>在 Web Worker 中运行,不阻塞页面。
+        </div>`;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === 'detect'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('hidden', p.dataset.panel !== 'detect'));
     uploadArea.innerHTML = '<div class="loading"><div class="spinner"></div><br>正在分析...</div>';
 
     try {
@@ -166,5 +180,43 @@ document.getElementById('btnConvert').addEventListener('click', async () => {
         resultDiv.innerHTML = `<div style="color:#c0392b;font-weight:600">转换失败: ${escHtml(err.message)}</div>`;
     } finally {
         btn.disabled = false;
+    }
+});
+
+// --- Tab switching (delegated) ---
+document.addEventListener('click', (ev) => {
+    const btn = ev.target.closest && ev.target.closest('.tab-btn');
+    if (!btn) return;
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('hidden', p.dataset.panel !== target));
+});
+
+// --- Frequency analysis trigger (event-delegated to survive panel re-renders) ---
+document.addEventListener('click', async (ev) => {
+    const btn = ev.target.closest && ev.target.closest('#btnRunFreq');
+    if (!btn) return;
+    if (!currentFile || !currentBytes) return;
+    const panel = document.getElementById('freqPanel');
+    if (lastFreqBytes === currentBytes && lastFreqResult) {
+        renderFrequencyPanel(panel, lastFreqResult);
+        return;
+    }
+    btn.disabled = true;
+    panel.innerHTML = `
+        <div class="loading"><div class="spinner"></div><br>
+        <span id="freqStage">初始化...</span></div>`;
+    try {
+        const result = await analyzeFrequency(currentBytes, currentFile.type || 'image/jpeg', {
+            onProgress: ({ stage, pct, info }) => {
+                const el = document.getElementById('freqStage');
+                if (el) el.textContent = `[${pct}%] ${stage}${info ? ' · ' + info : ''}`;
+            },
+        });
+        lastFreqBytes = currentBytes;
+        lastFreqResult = result;
+        renderFrequencyPanel(panel, result);
+    } catch (err) {
+        panel.innerHTML = `<div style="color:#c0392b;font-weight:600;padding:16px">频域分析失败: ${escHtml(err.message)}</div>`;
     }
 });
