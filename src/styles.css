@@ -993,13 +993,12 @@ a:hover { color: var(--text-muted); }
 }
 .community-qr:hover { transform: scale(1.02); box-shadow: var(--shadow-md); }
 .community-qr img {
-    /* Upscale the invite image 2.5× so the QR region alone fills the box,
-     * then center on (50%, 50%). Outer overflow:hidden crops the top/bottom
-     * instructional text rows. */
     position: absolute;
-    top: 50%; left: 50%;
+    top: 33%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 250%; height: auto;
+    width: 120%;
+    height: auto;
     max-width: none;
     display: block;
     image-rendering: -webkit-optimize-contrast;
