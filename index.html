@@ -16,6 +16,14 @@
     <link rel="canonical" href="https://863401402.github.io/image-provenance/">
     <meta name="robots" content="index, follow, max-image-preview:large">
 
+    <!-- Preconnect: warm DNS+TCP+TLS for domains we hit on first load.
+         jsdelivr is ES-Module (crossorigin required); counterapi is a plain
+         fetch. ipapi is a "maybe" (only first-visit IP geo), so dns-prefetch
+         is lighter than a full preconnect. -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://api.counterapi.dev">
+    <link rel="dns-prefetch" href="https://ipapi.co">
+
     <!-- Multilingual hints: same content, two query-param URLs -->
     <link rel="alternate" hreflang="zh-CN" href="https://863401402.github.io/image-provenance/">
     <link rel="alternate" hreflang="en"    href="https://863401402.github.io/image-provenance/?lang=en">
