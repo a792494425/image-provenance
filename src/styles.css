@@ -978,15 +978,33 @@ a:hover { color: var(--text-muted); }
     margin-top: 8px;
 }
 .community-qr {
-    width: 140px; height: 140px; flex-shrink: 0;
+    /* Bigger box so the QR itself lands at ~150px after cropping into the
+     * middle portion of the WeChat invite image (1080x1596 — QR is center,
+     * occupies ~40% height). */
+    width: 188px; height: 188px; flex-shrink: 0;
     border-radius: var(--radius-md);
     overflow: hidden;
-    background: #ffffff;  /* QR needs white bg regardless of theme */
+    background: #ffffff;                 /* QR needs white regardless of theme */
     border: 1px solid var(--border);
-    padding: 6px;
-    display: flex; align-items: center; justify-content: center;
+    display: block; position: relative;
+    cursor: zoom-in;
+    transition: transform var(--dur-fast) var(--ease),
+                box-shadow var(--dur-fast) var(--ease);
 }
-.community-qr img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.community-qr:hover { transform: scale(1.02); box-shadow: var(--shadow-md); }
+.community-qr img {
+    /* Upscale the invite image 2.5× so the QR region alone fills the box,
+     * then center on (50%, 50%). Outer overflow:hidden crops the top/bottom
+     * instructional text rows. */
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250%; height: auto;
+    max-width: none;
+    display: block;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
 .community-text { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .community-eyebrow {
     font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
