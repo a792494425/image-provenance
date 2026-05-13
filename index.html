@@ -7,46 +7,104 @@
     <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)">
 
     <!-- SEO -->
-    <title>AI 图片溯源检测 · C2PA / SynthID / EXIF 频域分析 — Image Provenance</title>
-    <meta name="description" content="100% 在浏览器里运行的 AI 图片溯源工具。检测 C2PA / Content Credentials、Google SynthID、Midjourney、Stable Diffusion 等 AI 生成签名;读取 EXIF / XMP 元数据;65 项频域特征启发式分析;支持剥离水印、注入相机 EXIF。零后端,图片不上传。">
-    <meta name="keywords" content="AI 图片检测,AI 生成图识别,C2PA,Content Credentials,SynthID,Midjourney 检测,Stable Diffusion 检测,EXIF 分析,频域分析,图像溯源,水印检测,水印去除,客户端工具">
+    <meta name="google-site-verification" content="tAE5kFYeI-_1e19pgIbg-sDxBxu5IBr7WKXmuY_Npww">
+    <title>AI 图片检测 · C2PA / SynthID / Sora / Gemini / Midjourney 溯源 · Image Provenance</title>
+    <meta name="description" content="免费 AI 图片检测工具。100% 在浏览器里运行,图片不上传。识别 C2PA / Content Credentials 来源凭证、Google SynthID 水印、OpenAI DALL·E / Sora / gpt-image / Nano Banana、Midjourney、Stable Diffusion / SDXL / Flux、Adobe Firefly 等 AI 生成签名。提取 EXIF / XMP / IPTC / ICC 元数据,65 项频域特征启发式分析,支持去除元数据、扰动水印、注入相机 EXIF 伪装为真实照片。AI image detector, AI-generated image detection, free online tool, no upload.">
+    <meta name="keywords" content="AI 图片检测,AI 生成图检测,AI 图片识别,AI 图识别,判断图片是否 AI 生成,ai图片溯源,C2PA 检测,Content Credentials,SynthID 检测,SynthID detector,Sora 检测,Sora 水印,DALL-E 检测,dalle 检测,gpt-image,Nano Banana,Midjourney 检测,Stable Diffusion 检测,SDXL 检测,Flux 检测,ComfyUI 检测,Adobe Firefly 检测,Gemini 生成图,Imagen 检测,EXIF 分析,EXIF 查看,EXIF 在线,XMP 元数据,IPTC,ICC,JUMBF,频域分析,FFT 图像分析,DCT 分析,小波分析,图像水印检测,图像水印去除,不可见水印,隐形水印,隐写术检测,图片溯源,图像取证,image forensics,AI image detector,AI-generated image detection,AI image watermark,synthetic image detection,diffusion model detection,watermark removal,metadata stripper,EXIF viewer online,C2PA verifier,OpenAI 检测工具,OpenAI detect,ChatGPT 图片检测,客户端工具,浏览器工具,零后端,图片不上传,免费在线工具,在线检测">
     <meta name="author" content="Image Provenance">
     <link rel="canonical" href="https://863401402.github.io/image-provenance/">
     <meta name="robots" content="index, follow, max-image-preview:large">
 
+    <!-- Multilingual hints (tells Google this page serves Chinese, and mark English as alternate target) -->
+    <link rel="alternate" hreflang="zh-CN" href="https://863401402.github.io/image-provenance/">
+    <link rel="alternate" hreflang="x-default" href="https://863401402.github.io/image-provenance/">
+
+    <!-- Bing crawl hint: we support IndexNow but without a key file yet (add one from bingwebmaster) -->
+    <meta name="bingbot" content="index,follow">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+
     <!-- Open Graph (微信、Facebook、Telegram 分享卡片) -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="zh_CN">
-    <meta property="og:site_name" content="Image Provenance">
-    <meta property="og:title" content="AI 图片溯源检测 · 浏览器里运行,图片不上传">
-    <meta property="og:description" content="检测 C2PA / SynthID / Midjourney / Stable Diffusion 等 AI 生成签名,读取 EXIF 元数据,65 项频域特征分析,支持元数据清洗与相机 EXIF 伪装。100% 客户端,零后端。">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:site_name" content="Image Provenance · AI 图片溯源">
+    <meta property="og:title" content="AI 图片检测 · C2PA / SynthID / Sora / Midjourney / DALL-E 溯源 · 浏览器运行不上传">
+    <meta property="og:description" content="免费 AI 图片检测工具。识别 C2PA、Google SynthID、OpenAI DALL-E / Sora / gpt-image、Midjourney、Stable Diffusion、Flux、Adobe Firefly、Gemini 等 AI 生成签名;读取 EXIF / XMP 元数据;65 项频域特征分析。100% 客户端,图片不上传。">
     <meta property="og:url" content="https://863401402.github.io/image-provenance/">
     <meta property="og:image" content="https://863401402.github.io/image-provenance/docs/screenshots/main-light.svg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="720">
+    <meta property="og:image:alt" content="Image Provenance 溯源检测主界面截图">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AI 图片溯源检测 · Image Provenance">
-    <meta name="twitter:description" content="浏览器内 AI 图片溯源 · C2PA / SynthID / EXIF 频域 · 零后端">
+    <meta name="twitter:title" content="AI 图片检测 · SynthID / Sora / Midjourney / Stable Diffusion">
+    <meta name="twitter:description" content="浏览器内运行的免费 AI 图片溯源 · C2PA / EXIF / 65 频域特征 · 零后端图片不上传">
     <meta name="twitter:image" content="https://863401402.github.io/image-provenance/docs/screenshots/main-light.svg">
+    <meta name="twitter:image:alt" content="Image Provenance 溯源检测主界面截图">
 
-    <!-- JSON-LD: SoftwareApplication schema for richer Google snippets -->
+    <!-- JSON-LD: multiple schemas for rich search result cards -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Image Provenance",
-      "alternateName": "AI 图片溯源检测",
-      "description": "浏览器内运行的 AI 图片溯源工具:检测 C2PA / SynthID / Midjourney / SD 等 AI 签名,读取 EXIF,65 项频域特征启发式分析,支持元数据清洗与相机 EXIF 伪装。",
+      "alternateName": ["AI 图片溯源检测", "AI 图片检测工具", "AI Image Detector"],
+      "description": "浏览器内运行的免费 AI 图片溯源工具:检测 C2PA / Google SynthID / OpenAI DALL-E / Sora / Midjourney / Stable Diffusion / Flux / Adobe Firefly / Gemini 等 AI 生成签名,读取 EXIF 元数据,65 项频域特征启发式分析,支持元数据清洗与相机 EXIF 伪装。",
       "url": "https://863401402.github.io/image-provenance/",
-      "applicationCategory": "MultimediaApplication",
+      "applicationCategory": ["MultimediaApplication", "SecurityApplication", "UtilitiesApplication"],
       "operatingSystem": "Any (Web Browser)",
       "browserRequirements": "Requires JavaScript, ES Modules, Web Workers",
       "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
       "license": "https://opensource.org/licenses/MIT",
-      "inLanguage": "zh-CN",
+      "inLanguage": ["zh-CN", "en"],
+      "featureList": [
+        "C2PA / Content Credentials detection",
+        "Google SynthID watermark detection",
+        "OpenAI DALL-E / Sora / gpt-image / Nano Banana detection",
+        "Midjourney signature detection",
+        "Stable Diffusion / SDXL / Flux / ComfyUI detection",
+        "Adobe Firefly detection",
+        "EXIF / XMP / IPTC / ICC metadata parsing",
+        "65-feature frequency-domain analysis (FFT / DCT / DWT)",
+        "Pixel-level watermark disruption",
+        "Camera EXIF injection (17 models)",
+        "Runs 100% client-side, no upload"
+      ],
       "creator": {"@type": "Organization", "name": "Image Provenance", "url": "https://github.com/863401402/image-provenance"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "这个工具会上传我的图片吗?",
+          "acceptedAnswer": {"@type": "Answer", "text": "不会。所有分析都在浏览器里完成,图片从不离开你的设备。零后端、零服务器。"}
+        },
+        {
+          "@type": "Question",
+          "name": "能检测 OpenAI Sora / DALL-E / gpt-image / Nano Banana 生成的图片吗?",
+          "acceptedAnswer": {"@type": "Answer", "text": "能检测这些模型在元数据中留下的厂商签名(OpenAI、DALL-E、gpt-image 等字符串)和 C2PA 声明。如果生成工具没有嵌入任何标记,则会通过频域特征做启发式参考。"}
+        },
+        {
+          "@type": "Question",
+          "name": "能检测 Google SynthID 水印吗?",
+          "acceptedAnswer": {"@type": "Answer", "text": "可做频域启发式参考,但 SynthID 目前没有官方公开的 detector,仅靠相位一致性等特征判断,准确率有限。工具还提供水印扰动功能用于学术鲁棒性评估。"}
+        },
+        {
+          "@type": "Question",
+          "name": "支持检测哪些 AI 图像生成工具?",
+          "acceptedAnswer": {"@type": "Answer", "text": "OpenAI DALL-E / Sora / gpt-image、Google Gemini / Imagen / SynthID / Nano Banana、Midjourney、Stable Diffusion / SDXL / Flux / ComfyUI / Automatic1111 / InvokeAI、Adobe Firefly。支持识别 C2PA Content Credentials 来源凭证。"}
+        },
+        {
+          "@type": "Question",
+          "name": "是免费的吗?",
+          "acceptedAnswer": {"@type": "Answer", "text": "完全免费,MIT 开源。源码在 GitHub 上,也可以自己部署。"}
+        }
+      ]
     }
     </script>
 
